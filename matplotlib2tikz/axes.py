@@ -254,7 +254,6 @@ class Axes(object):
         data, col, _ = color.mpl_color2xcolor(data, axcol)
         if col != 'black':
             self.axis_options.append('axis line style={%s}' % col)
-
         # background color
         try:
             # mpl 2.*

@@ -176,14 +176,12 @@ def get_tikz_code(
         if extra_tikzpicture_parameters:
             code += ',\n'.join(data['extra tikzpicture parameters'])
             code += '\n'
-
     coldefs = _get_color_definitions(data)
     if coldefs:
         code += '\n'.join(coldefs)
         code += '\n\n'
 
     code += ''.join(content)
-
     if wrap and axis_environment:
         code += '\\end{tikzpicture}'
 
@@ -276,7 +274,6 @@ def _recurse(data, obj):
             # Reset 'extra axis parameters' for every new Axes environment.
             data['extra axis options'] = \
                 data['extra axis options [base]'].copy()
-
             ax = axes.Axes(data, child)
             if not ax.is_colorbar:
                 # Run through the child objects, gather the content.
@@ -319,9 +316,9 @@ def _recurse(data, obj):
                 ):
             data, cont = patch.draw_patchcollection(data, child)
             content.extend(cont, child.get_zorder())
-        elif isinstance(child, mpl.collections.PathCollection):
-            data, cont = path.draw_pathcollection(data, child)
-            content.extend(cont, child.get_zorder())
+        #elif isinstance(child, mpl.collections.PathCollection):
+        #    data, cont = path.draw_pathcollection(data, child)
+        #    content.extend(cont, child.get_zorder())
         elif isinstance(child, mpl.collections.LineCollection):
             data, cont = line2d.draw_linecollection(data, child)
             content.extend(cont, child.get_zorder())
